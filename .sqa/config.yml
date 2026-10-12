@@ -1,0 +1,62 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: fix/updatego
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/cessda/cessda.cafe.coffee.carsten:
+      branch: main
+      repo: https://github.com/cessda/cessda.cafe.coffee.carsten
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/cessda/cessda.cafe.coffee.carsten git:
+        commands:
+        - /usr/bin/env sh .sqa/script.salmon_feisty_capybara.sh
+        container: qc.acc_aqua_diligent_whale
+  QC.Doc:
+    repos:
+      github.com/cessda/cessda.cafe.coffee.carsten find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.dusk_stoic_ibex.sh
+        container: qc.doc_mist_quirky_hyena
+      github.com/cessda/cessda.cafe.coffee.carsten git:
+        commands:
+        - /usr/bin/env sh .sqa/script.celadon_resilient_clownfish.sh
+        container: qc.doc_rose_rugged_tapir
+      github.com/cessda/cessda.cafe.coffee.carsten markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.fuchsia_compassionate_salamander.sh
+        container: qc.doc_teal_loving_toucan
+  QC.Lic:
+    repos:
+      github.com/cessda/cessda.cafe.coffee.carsten licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.dusk_reckless_beaver.sh
+        container: qc.lic_puce_energetic_dingo
+  QC.Sec:
+    repos:
+      github.com/cessda/cessda.cafe.coffee.carsten gosec:
+        commands:
+        - /usr/bin/env sh .sqa/script.tan_ardent_wasp.sh
+        container: qc.sec_rust_apprehensive_moose
+  QC.Sty:
+    repos:
+      github.com/cessda/cessda.cafe.coffee.carsten hadolint:
+        commands:
+        - /usr/bin/env sh .sqa/script.rust_wondrous_rhinoceros.sh
+        container: qc.sty_watermelon_trustworthy_eagle
+      github.com/cessda/cessda.cafe.coffee.carsten staticcheck:
+        commands:
+        - /usr/bin/env sh .sqa/script.banana_dramatic_roc.sh
+        container: qc.sty_pine_articulate_elk
+  QC.Ver:
+    repos:
+      github.com/cessda/cessda.cafe.coffee.carsten get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.mahogany_perceptive_dingo.sh
+        container: qc.ver_umber_productive_marmoset
+timeout: 5400
